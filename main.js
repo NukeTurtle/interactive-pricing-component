@@ -1,15 +1,25 @@
 var slider = document.querySelector('#myRange');
+var monthlySwitch = document.querySelector("input[type=checkbox]");
 var valueViews = document.querySelector('#valueViews');
 var valuePrice = document.querySelector('#valuePrice');
 
-valuePrice.innerHTML = slider.value;
+valueViews = ["10K", "50K", "100K", "500K", "1M"];
 
-slider.oninput = function (){
-    valuePrice.innerHTML = this.value;
+slider.max = valueViews.length;
+document.querySelector("input[type=checkbox]").addEventListener("click", switchState);
+
+function switchState() {
+    if (monthlySwitch.checked === true) {
+        valuePrice = ["$6", "$9", "$12", "$18", "$27"];
+    } else {
+        valuePrice = ["$8", "$12", "$16", "$24", "$36"];
+    }
 }
 
-slider.addEventListener('input', function(){
-    var x = slider.value;
-    var color = 'linear-gradient(90deg, hsl(174, 86%, 45%)' + x + '%, hsl(224, 65%, 95%)' + x + '%';
-    slider.style.background = color;
-})
+let i = 3;
+
+slider.oninput = function() {
+    i = this.value;
+    document.querySelector("#valuePrice").innerText = valuePrice[i-1];
+    document.querySelector("#valueViews").innerText = valueViews[i-1];
+}
