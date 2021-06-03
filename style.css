@@ -129,7 +129,7 @@ transform: translateX(20px);
     border-radius: 4px;
     margin: 35px 0;
     opacity: .7;
-    background: linear-gradient(90deg, hsl(174, 77%, 80%) 50%, hsl(174, 86%, 45%) 50%);
+    background: linear-gradient(90deg, hsl(224, 65%, 95%) 0%, hsl(224, 65%, 95%) 0%);
 }
 .slider::-webkit-slider-thumb{
     -webkit-appearance: none; /* Override default look */
