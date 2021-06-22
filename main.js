@@ -1,15 +1,30 @@
+
 var slider = document.querySelector('#myRange');
+var monthlySwitch = document.querySelector("input[type=checkbox]");
 var valueViews = document.querySelector('#valueViews');
-var valuePrice = document.querySelector('#valuePrice');
+var priceValue = document.querySelector('#priceValue');
 
-valuePrice.innerHTML = slider.value;
+valueViews = ["10K", "50K", "100K", "500K", "1M"];
+priceValue = ["$8", "$12", "$16", "$24", "$36"];
 
-slider.oninput = function (){
-    valuePrice.innerHTML = this.value;
+slider.max = valueViews.length;
+document.querySelector("input[type=checkbox]").addEventListener("click", switchState);
+
+// we check if switch is turned ON/OFF and change priceValue accordingly
+function switchState() {
+    if (monthlySwitch.checked === true) {
+        priceValue = ["$6", "$9", "$12", "$18", "$27"];
+    } else {
+        priceValue = ["$8", "$12", "$16", "$24", "$36"];
+    }
 }
 
-slider.addEventListener('input', function(){
-    var x = slider.value;
-    var color = 'linear-gradient(90deg, hsl(174, 86%, 45%)' + x + '%, hsl(224, 65%, 95%)' + x + '%';
+let i = 3;
+
+slider.oninput = function() {
+    i = this.value;
+    var color = 'linear-gradient(90deg, hsl(174, 86%, 45%)' + ((i * 25) - 25)  + '%, hsl(224, 65%, 95%) 1px';
     slider.style.background = color;
-})
+    document.querySelector("#priceValue").innerText = priceValue[i-1];
+    document.querySelector("#valueViews").innerText = valueViews[i-1];
+}
